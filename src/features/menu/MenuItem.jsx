@@ -1,10 +1,15 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import { addItem } from "../cart/cartSlice";
+import DeleteItemButton from "../cart/DeleteItemButton";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
 function MenuItem({ items }) {
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = items;
 
   function handleAddToCart() {
@@ -18,6 +23,8 @@ function MenuItem({ items }) {
       }),
     );
   }
+
+  const isExists = cart.find((item) => item.pizzaId === id);
 
   return (
     <li className={`flex gap-4 py-2 ${soldOut ? "opacity-60 grayscale" : ""}`}>
@@ -35,7 +42,12 @@ function MenuItem({ items }) {
               Sold out
             </p>
           )}
-          {!soldOut && (
+          {isExists && (
+            <div className="flex gap-2 md:gap-8">
+              <UpdateItemQuantity id={id} /> <DeleteItemButton id={id} />
+            </div>
+          )}
+          {!soldOut && !isExists && (
             <Button
               type={"xsmall"}
               addClass="uppercase"

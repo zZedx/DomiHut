@@ -5,7 +5,7 @@ import { deleteItem } from "./cartSlice";
 const DeleteItemButton = ({id}) => {
     const dispatch = useDispatch()
   return (
-    <Button onClick={() => dispatch(deleteItem(id))} addClass={" bg-red-400 hover:bg-red-600"} type={"xsmall"}>
+    <Button onClick={() => dispatch(deleteItem(id))} type={"delete"}>
       Delete
     </Button>
   );
