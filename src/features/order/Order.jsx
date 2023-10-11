@@ -89,17 +89,17 @@ function Order() {
 
       <ul className="divide-stone-200 divide-y border-b border-t">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.id}></OrderItem>
+          <OrderItem item={item} key={item.pizzaId}></OrderItem>
         ))}
       </ul>
 
       <div className="space-y-2 bg-stone-200 px-6 py-5">
         <p className="text-sm font-medium text-stone-600">
-          Price pizza: {formatCurrency(orderPrice)}
+          Pizza Price: {formatCurrency(orderPrice)}
         </p>
         {priority && (
           <p className="text-sm font-medium text-stone-600">
-            Price priority: {formatCurrency(priorityPrice)}
+            Priority Price: {formatCurrency(priorityPrice)}
           </p>
         )}
         <p className="font-bold">
