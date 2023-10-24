@@ -112,6 +112,7 @@ function Order() {
 
 export async function loader({ params }) {
   const order = await getOrder(params.orderId);
+  const id = 0;
   return order;
 }
 
